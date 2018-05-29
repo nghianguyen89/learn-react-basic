@@ -1,6 +1,6 @@
 import React from 'react'
-import Login from './screens/Login'
+import StackNavigator from './routes/StackNavigator.js'
 
 export default () => (
-    <Login />
+    <StackNavigator />
 )

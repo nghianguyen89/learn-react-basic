@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, TouchableOpacity, Text, TextInput } from 'react-native'
+import { Routes } from '../config/constants'
+import { View, StyleSheet, TouchableOpacity, Text, TextInput, Image } from 'react-native'
 import PropsType from 'prop-types'
 
 class Hello extends Component {
@@ -27,25 +28,31 @@ export default class Login extends Component {
         }
     }
 
+    static PropsType  = {
+        navigation: PropsType.object,
+    }
+
     _onPressLogin() {
-        alert('login')
+        this.props.navigation.navigate(Routes.HOME)
     }
 
     render() {
-        return ( 
+        return (
             <View style = { styles.container }>
+                <Image source={require('../assets/images/logo.png')} style ={ styles.loginImage } />
+                <View>
+                    <Text>Tên đăng nhập</Text> 
+                    <TextInput />
+                </View>
+                <View>
+                    <Text>Mật Khẩu</Text> 
+                    <TextInput />
+                </View>
                 <TouchableOpacity onPress = { () => this._onPressLogin() }>
-                    <View style = { styles.loginButton }>
-                        <Hello name='Nghia Nguyen' />
-                        <Text style={styles.loginText}>Hello {this.state.text}</Text>
-                        <Text style = { styles.loginText }> Log in </Text> 
+                    <View style = { styles.container }>
+                        <Text style = { styles.loginText }> Đăng Nhập </Text> 
                     </View> 
                 </TouchableOpacity>
-                <TextInput
-                    style={ styles.textInput }
-                    onChangeText={(text) => this.setState({text}) }
-                    value={this.state.text}
-                />
             </View>
         )
     }
@@ -57,22 +64,5 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    loginButton: {
-        width: 150,
-        height: 50,
-        backgroundColor: 'blue',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    loginText: {
-        color: 'white'
-    },
-    textInput: {
-        height: 40,
-        width: 200,
-        marginTop: 20,
-        borderColor: 'gray',
-        borderWidth: 1
     }
 })
